@@ -3,7 +3,7 @@
   "host": "localhost",
   "port": 3306,
   "username": "root",
-  "password": "%Luiscumez20",
+  "password": "password",
   "database": "content_post_db",
   "entities": ["build/entity/**/*.js"],
   "synchronize": true

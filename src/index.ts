@@ -1,13 +1,13 @@
 import { App } from "./app";
-import { config } from "dotenv";
 import { createConnection } from "typeorm";
+import { Config } from "./config";
 import "reflect-metadata";
-
-process.env.NODE_ENV !== "production" ? config() : "";
 
 const main = async () => {
   try {
-    const app = new App(3000);
+    const { PORT } = Config;
+
+    const app = new App(PORT);
 
     // create typeorm connections
     await createConnection();
