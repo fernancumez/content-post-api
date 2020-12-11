@@ -12,7 +12,7 @@ export class App {
   }
 
   settings() {
-    this.app.set("port", process.env.PORT || this.port || 4000);
+    this.app.set("port", this.port);
   }
 
   middlewares() {
