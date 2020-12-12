@@ -1,3 +1,5 @@
+### GET posts
+GET http://localhost:4000/api/posts
 
 ### POST Creating a new post
 POST http://localhost:4000/api/posts
