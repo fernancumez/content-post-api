@@ -1,33 +1,23 @@
-import express, { Application } from "express";
+import express, { Express } from "express";
+import postRoutes from "./routes/post.routes";
+import { Config } from "./config";
 import morgan from "morgan";
 import cors from "cors";
 
-export class App {
-  app: Application;
+// Initializations
+const app: Express = express();
+const { PORT } = Config;
 
-  constructor(private port?: number | string | undefined) {
-    this.app = express();
-    this.settings();
-    this.middlewares();
-  }
+//Settings
+app.set("port", PORT);
 
-  settings() {
-    this.app.set("port", this.port);
-  }
+// Middlewares
+app.use(cors());
+app.use(morgan("dev"));
+app.use(express.json()); // parse application/json
+app.use(express.urlencoded({ extended: true })); // parse application/x-www-form-urlencoded
 
-  middlewares() {
-    this.app.use(cors());
-    this.app.use(morgan("dev"));
-    this.app.use(express.json());
-    this.app.use(express.urlencoded({ extended: true }));
-  }
+// Routes
+app.use("/api/posts", postRoutes);
 
-  async listen(): Promise<void> {
-    try {
-      await this.app.listen(this.app.get("port"));
-      console.log(`Server on port ${this.app.get("port")}`);
-    } catch (err) {
-      console.error(err);
-    }
-  }
-}
+export default app;

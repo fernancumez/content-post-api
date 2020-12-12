@@ -1,17 +1,15 @@
-import { App } from "./app";
+import app from "./app";
 import { createConnection } from "typeorm";
-import { Config } from "./config";
 import "reflect-metadata";
 
 const main = async () => {
   try {
-    const { PORT } = Config;
-
-    const app = new App(PORT);
-
     // create typeorm connections
     await createConnection();
-    await app.listen();
+
+    // Server init
+    app.listen(app.get("port"));
+    console.log(`Server on port ${app.get("port")}`);
   } catch (err) {
     console.error(err);
   }
