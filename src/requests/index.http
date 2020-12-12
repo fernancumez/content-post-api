@@ -1,0 +1,10 @@
+
+### POST Creating a new post
+POST http://localhost:4000/api/posts
+Content-Type: application/json
+
+{
+    "title":"Learning vscode",
+    "description":"It´s fun",
+    "image_url": "https://img.code/34322323.png"
+}
