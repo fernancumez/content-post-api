@@ -1,0 +1,29 @@
+### GET posts/:id
+GET http://localhost:4000/api/posts/2
+
+### GET posts
+GET http://localhost:4000/api/posts
+
+### POST Creating a new post
+POST http://localhost:4000/api/posts
+Content-Type: application/json
+
+{
+    "title":"Learning vscode",
+    "description":"It´s fun",
+    "image_url": "https://img.code/34322323.png"
+}
+
+### PUT Update post
+
+PUT http://localhost:4000/api/posts/1
+Content-Type: application/json
+
+{
+    "title":"Learning vscode editado",
+    "description":"It´s fun",
+    "image_url": "https://img.code/34322323.png"    
+}
+
+### DELETE Delete post
+DELETE http://localhost:4000/api/posts/3
