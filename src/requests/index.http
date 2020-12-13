@@ -24,3 +24,6 @@ Content-Type: application/json
     "description":"It´s fun",
     "image_url": "https://img.code/34322323.png"    
 }
+
+### DELETE Delete post
+DELETE http://localhost:4000/api/posts/3

@@ -83,3 +83,21 @@ export const updatePost = async (
     return res.status(400).json({ error: err });
   }
 };
+
+// Delete post
+export const deletePost = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  try {
+    const { id } = req.params;
+
+    const post = await getRepository(Post).findOne(id);
+    if (!post) return res.status(400).json({ message: "User not found" });
+
+    const result = await getRepository(Post).delete(id);
+    return res.status(200).json({ message: "Post Successful deleted", result });
+  } catch (err) {
+    return res.status(400).json({ error: err });
+  }
+};
