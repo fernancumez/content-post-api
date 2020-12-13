@@ -46,10 +46,39 @@ export const createPost = async (
 
     const data = { title, description, image_url };
 
-    const newUser = getRepository(Post).create(data);
-    const result = await getRepository(Post).save(newUser);
+    const newPost = getRepository(Post).create(data);
+    const result = await getRepository(Post).save(newPost);
 
     return res.status(200).json({ message: "Post successfully saved", result });
+  } catch (err) {
+    return res.status(400).json({ error: err });
+  }
+};
+
+//Update post
+export const updatePost = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  try {
+    const { id } = req.params;
+
+    const { title, description, image_url } = req.body as Pick<
+      Post,
+      "title" | "description" | "image_url"
+    >;
+
+    const data = { title, description, image_url };
+
+    const post = await getRepository(Post).findOne(id);
+    if (!post) return res.status(400).json({ message: "Post not found" });
+
+    getRepository(Post).merge(post, data);
+    const result = await getRepository(Post).save(post);
+
+    return res
+      .status(200)
+      .json({ message: "Post successfully updated", result });
   } catch (err) {
     return res.status(400).json({ error: err });
   }
