@@ -2,6 +2,23 @@ import { Request, Response } from "express";
 import { getRepository } from "typeorm";
 import { Post } from "../entity/Post";
 
+// Find post
+export const getPost = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  try {
+    const { id } = req.params;
+
+    const result = await getRepository(Post).findOne(id);
+    if (!result) return res.status(400).json({ message: "User not found" });
+
+    return res.status(200).json({ message: "Successful operation", result });
+  } catch (err) {
+    return res.status(400).json({ error: err });
+  }
+};
+
 // Get all posts
 export const getPosts = async (
   req: Request,
