@@ -8,8 +8,8 @@
     "build": "tsc",
     "watch": "tsc -w",
     "clean": "rimraf build",
-    "start": "npm run build && node build/index.js",
-    "dev": "nodemon build/index.js"
+    "start": "export NODE_ENV=production || SET NODE_ENV=production&& npm run build && node build/index.js",
+    "dev": "export NODE_ENV=development || SET NODE_ENV=development&& nodemon build/index.js"
   },
   "repository": {
     "type": "git",
