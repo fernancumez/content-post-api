@@ -1,10 +1,17 @@
-{
-  "type": "mysql",
-  "host": "localhost",
-  "port": 3306,
-  "username": "root",
-  "password": "password",
-  "database": "content_post_db",
-  "entities": ["build/entity/**/*.js"],
-  "synchronize": true
-}
+[
+  {
+    "name": "production",
+    "type": "mysql",
+    "synchronize": true,
+    "logging": true
+  },
+  {
+    "name": "development",
+    "host": "localhost",
+    "type": "mysql",
+    "synchronize": true,
+    "logging": false,
+    "port": 3306,
+    "entities": ["dist/entity/**/*.js"]
+  }
+]
